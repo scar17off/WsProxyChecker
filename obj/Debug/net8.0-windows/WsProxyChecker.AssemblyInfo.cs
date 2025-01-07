@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WsProxyChecker")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf28da57f055cabbbfe89c5183c4ba01db6eabe8")]
 [assembly: System.Reflection.AssemblyProductAttribute("WsProxyChecker")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WsProxyChecker")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

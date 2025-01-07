@@ -15,6 +15,20 @@ namespace WsProxyChecker
         private CancellationTokenSource cancellationTokenSource;
         private SemaphoreSlim semaphore;
 
+        private readonly string[] userAgents = new[]
+        {
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3 Safari/605.1.15"
+        };
+
+        private string GetRandomUserAgent()
+        {
+            return userAgents[new Random().Next(userAgents.Length)];
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -108,8 +122,10 @@ namespace WsProxyChecker
         {
             try
             {
-                var url = proxy.StartsWith("http") ? proxy : $"https://{proxy}.glitch.me";
-                var response = await httpClient.GetAsync($"{url}/status");
+                using var request = new HttpRequestMessage(HttpMethod.Get, $"https://{proxy}.glitch.me/status");
+                request.Headers.Add("User-Agent", GetRandomUserAgent());
+                
+                var response = await httpClient.SendAsync(request);
                 
                 if (response.IsSuccessStatusCode)
                 {
