@@ -16,12 +16,10 @@ A Windows Forms application built with .NET 8.0 for managing and checking WebSoc
 
 - Windows 7 or later
 - .NET 8.0 Runtime
-- Microsoft Edge WebView2 Runtime (installed automatically with the application)
 
 ## Dependencies
 
 - Guna.UI2.WinForms (2.0.4.4)
-- Microsoft.Web.WebView2 (1.0.2903.40)
 - System.Management (7.0.0)
 
 ## Installation
