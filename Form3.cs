@@ -12,6 +12,7 @@ namespace WsProxyChecker
     {
         private int proxiesPerAccount = 1;
         private List<Dictionary<string, string>> importedAccounts = new List<Dictionary<string, string>>();
+        private string BaseProxyName => baseProxyTextBox.Text.Trim();
 
         public Form3()
         {
@@ -95,6 +96,12 @@ namespace WsProxyChecker
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(BaseProxyName))
+                {
+                    MessageBox.Show("Please enter a base proxy name!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 if (importedAccounts.Count == 0)
                 {
                     MessageBox.Show("Please import accounts first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -136,7 +143,7 @@ namespace WsProxyChecker
                     
                     try
                     {
-                        var proxyGenerator = new GlitchProxyGenerator(token);
+                        var proxyGenerator = new GlitchProxyGenerator(token, BaseProxyName);
 
                         for (int i = 0; i < proxiesPerAccount; i++)
                         {

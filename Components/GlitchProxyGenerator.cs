@@ -10,13 +10,14 @@ namespace WsProxyChecker.Components
     {
         private readonly HttpClient _client;
         private readonly string _authToken;
-        private const string BaseProjectDomain = "languid-woozy-steed";
+        private readonly string _baseProjectDomain;
         private const int RetryDelaySeconds = 10;
 
-        public GlitchProxyGenerator(string authToken)
+        public GlitchProxyGenerator(string authToken, string baseProjectDomain)
         {
             _client = new HttpClient();
             _authToken = authToken;
+            _baseProjectDomain = baseProjectDomain;
         }
 
         public async Task<string> CreateProxyProject()
@@ -27,7 +28,7 @@ namespace WsProxyChecker.Components
                 try
                 {
                     var request = new HttpRequestMessage(HttpMethod.Post, 
-                        $"https://api.glitch.com/v1/projects/by/domain/{BaseProjectDomain}/remix");
+                        $"https://api.glitch.com/v1/projects/by/domain/{_baseProjectDomain}/remix");
 
                     // Set headers exactly as in the working example
                     request.Headers.Add("accept", "application/json");

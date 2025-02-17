@@ -21,6 +21,7 @@
         private Guna.UI2.WinForms.Guna2Button importProxiesButton;
         private Guna.UI2.WinForms.Guna2Button exportProxiesButton;
         private Guna.UI2.WinForms.Guna2Button filterFailedButton;
+        private Guna.UI2.WinForms.Guna2TextBox baseProxyTextBox;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -113,6 +114,19 @@
             this.sliderLabel.ForeColor = Color.White;
             this.sliderLabel.Location = new Point(10, proxiesPerAccountSlider.Bottom + 5);
 
+            // Add baseProxyTextBox after the slider and before the buttons
+            this.baseProxyTextBox = new Guna.UI2.WinForms.Guna2TextBox();
+            this.baseProxyTextBox.PlaceholderText = "Base proxy name";
+            this.baseProxyTextBox.Text = "languid-woozy-steed";
+            this.baseProxyTextBox.ForeColor = Color.White;
+            this.baseProxyTextBox.Font = new Font("Segoe UI", 9F);
+            this.baseProxyTextBox.Size = new Size(rightPanel.Width - 20, 35);
+            this.baseProxyTextBox.Location = new Point(10, sliderLabel.Bottom + 20);
+            this.baseProxyTextBox.BorderColor = Color.FromArgb(45, 45, 45);
+            this.baseProxyTextBox.FillColor = Color.FromArgb(32, 32, 32);
+            this.baseProxyTextBox.PlaceholderForeColor = Color.Gray;
+            this.baseProxyTextBox.BorderRadius = 3;
+
             // Buttons
             this.generateButton = new Guna.UI2.WinForms.Guna2Button();
             this.importAccountsButton = new Guna.UI2.WinForms.Guna2Button();
@@ -143,7 +157,7 @@
                 actionButtons[i].ForeColor = Color.White;
                 actionButtons[i].Font = new Font("Segoe UI", 9F);
                 actionButtons[i].Size = new Size(rightPanel.Width - 20, 35);
-                actionButtons[i].Location = new Point(10, sliderLabel.Bottom + 20 + (i * 45));
+                actionButtons[i].Location = new Point(10, baseProxyTextBox.Bottom + 10 + (i * 45));
                 this.rightPanel.Controls.Add(actionButtons[i]);
             }
 
@@ -181,6 +195,7 @@
                 statsGroup, 
                 proxiesPerAccountSlider, 
                 sliderLabel,
+                baseProxyTextBox,
                 generateButton,
                 importAccountsButton,
                 importProxiesButton,
